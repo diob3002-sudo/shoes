@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KicksSport - Cửa Hàng Giày Thể Thao Chính Hãng</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Config for Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#111827',
+                        accent: '#ef4444' // Red color for CTA and badges
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom CSS for smooth image hover effects */
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+        .product-img {
+            transition: transform 0.4s ease;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-sm z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <a href="#" class="text-3xl font-black tracking-tighter text-primary">
+                        KICKS<span class="text-accent">Sport</span>.
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#" class="text-gray-600 hover:text-primary font-medium transition-colors">Trang chủ</a>
+                    <a href="#products" class="text-gray-600 hover:text-primary font-medium transition-colors">Sản phẩm</a>
+                    <a href="#about" class="text-gray-600 hover:text-primary font-medium transition-colors">Về chúng tôi</a>
+                    <a href="#contact" class="text-gray-600 hover:text-primary font-medium transition-colors">Liên hệ</a>
+                </div>
+
+                <!-- Cart Icon & Mobile Menu Button -->
+                <div class="flex items-center space-x-6">
+                    <!-- Search Icon (Decorative) -->
+                    <button class="text-gray-500 hover:text-primary transition-colors hidden sm:block">
+                        <i class="fa-solid fa-search text-xl"></i>
+                    </button>
+
+                    <!-- Cart -->
+                    <div class="relative cursor-pointer group" onclick="toggleCart()">
+                        <i class="fa-solid fa-shopping-bag text-2xl text-gray-700 group-hover:text-primary transition-colors"></i>
+                        <!-- Cart Badge -->
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-accent text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">0</span>
+                    </div>
+
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden text-gray-500 hover:text-primary focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Trang chủ</a>
+                <a href="#products" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Sản phẩm</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Về chúng tôi</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Liên hệ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-20 pb-32 flex content-center items-center justify-center min-h-[90vh]">
+        <!-- Background Image with Overlay -->
+        <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1920&q=80');">
+            <span class="w-full h-full absolute opacity-70 bg-black"></span>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="container relative mx-auto px-4 z-10">
+            <div class="flex flex-col items-center text-center">
+                <span class="text-accent font-bold tracking-widest uppercase mb-4 animate-fade-in-up">Bộ Sưu Tập Mới 2026</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg max-w-4xl">
+                    Bước Đi Tự Tin,<br/> Phong Cách Của Riêng Bạn
+                </h1>
+                <p class="mt-4 text-lg text-gray-200 mb-10 max-w-2xl font-light">
+                    Khám phá hàng ngàn mẫu giày thể thao chính hãng từ các thương hiệu hàng đầu thế giới. Trải nghiệm sự êm ái và thiết kế đột phá ngay hôm nay.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#products" class="bg-accent hover:bg-red-600 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-red-500/50 flex items-center justify-center gap-2">
+                        Mua Ngay <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#about" class="bg-white/10 hover:bg-white/20 backdrop-blur border border-white/30 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 flex items-center justify-center">
+                        Tìm Hiểu Thêm
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Brands Banner (Optional aesthetic addition) -->
+    <div class="bg-white py-8 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center items-center gap-10 md:gap-20 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                <i class="fa-brands fa-nike text-4xl"></i>
+                <i class="fa-brands fa-cuttlefish text-4xl"></i> <!-- Placeholder for other brand logos -->
+                <h3 class="text-2xl font-black italic tracking-tighter">ADIDAS</h3>
+                <h3 class="text-2xl font-black tracking-widest">PUMA</h3>
+                <h3 class="text-2xl font-black font-serif">VANS</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Products Section -->
+    <main id="products" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        
+        <!-- Section Header -->
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-black text-primary mb-2">Sản Phẩm Nổi Bật</h2>
+                <div class="h-1 w-20 bg-accent rounded"></div>
+            </div>
+            <a href="#" class="hidden sm:inline-block text-gray-500 hover:text-accent font-semibold transition-colors">
+                Xem tất cả <i class="fa-solid fa-arrow-right-long ml-1"></i>
+            </a>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            
+            <!-- Product Item 1 -->
+            <div class="product-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col">
+                <div class="relative h-64 overflow-hidden bg-gray-100 flex items-center justify-center">
+                    <!-- Badge -->
+                    <span class="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full z-10">Mới</span>
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" alt="Nike Air Max" class="product-img object-cover w-full h-full" loading="lazy">
+                </div>
+                <div class="p-5 flex flex-col flex-grow">
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Nike</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 truncate">Nike Air Max 270</h3>
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <span class="text-xs text-gray-400 ml-2">(128)</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between">
+                        <span class="text-xl font-extrabold text-accent">3.499.000 ₫</span>
+                        <button onclick="addToCart('Nike Air Max 270', 3499000)" class="bg-gray-100 hover:bg-primary hover:text-white text-gray-900 w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" title="Thêm vào giỏ">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 2 -->
+            <div class="product-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col">
+                <div class="relative h-64 overflow-hidden bg-gray-100 flex items-center justify-center">
+                    <span class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">-15%</span>
+                    <img src="adidas.jpg" alt="Adidas Samba OG" class="product-img object-cover w-full h-full" loading="lazy">
+                </div>
+                <div class="p-5 flex flex-col flex-grow">
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Adidas</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 truncate">Adidas Samba OG</h3>
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                        </div>
+                        <span class="text-xs text-gray-400 ml-2">(84)</span>
+                    </div>
+                    <div class="mt-auto flex flex-col">
+                        <span class="text-sm text-gray-400 line-through">2.800.000 ₫</span>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-extrabold text-accent">2.800.000 ₫</span>
+                            <button onclick="addToCart('Adidas Samba OG', 2800000)" class="bg-gray-100 hover:bg-primary hover:text-white text-gray-900 w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" title="Thêm vào giỏ">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 3 -->
+            <div class="product-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col">
+                <div class="relative h-64 overflow-hidden bg-gray-100 flex items-center justify-center">
+                    <img src="nb.jpg" alt="New Balance 530 White Navy class="product-img object-cover w-full h-full" loading="lazy">
+                </div>
+                <div class="p-5 flex flex-col flex-grow">
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">New Balance</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 truncate">New Balance 530 White Navy</h3>
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="text-xs text-gray-400 ml-2">(342)</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between">
+                        <span class="text-xl font-extrabold text-accent">2.400.000 ₫</span>
+                        <button onclick="addToCart('New Balance 530 White Navy', 2400000)" class="bg-gray-100 hover:bg-primary hover:text-white text-gray-900 w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" title="Thêm vào giỏ">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 4 -->
+            <div class="product-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col">
+                <div class="relative h-64 overflow-hidden bg-gray-100 flex items-center justify-center">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-bold px-3 py-1 rounded-full z-10">Bán chạy</span>
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80" alt="Nike AF1" class="product-img object-cover w-full h-full" loading="lazy">
+                </div>
+                <div class="p-5 flex flex-col flex-grow">
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Nike</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 truncate">Air Force 1 '07</h3>
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="text-xs text-gray-400 ml-2">(890)</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between">
+                        <span class="text-xl font-extrabold text-accent">2.900.000 ₫</span>
+                        <button onclick="addToCart('Air Force 1 \'07', 2900000)" class="bg-gray-100 hover:bg-primary hover:text-white text-gray-900 w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" title="Thêm vào giỏ">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 5 -->
+            <div class="product-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col">
+                <div class="relative h-64 overflow-hidden bg-gray-100 flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80" alt="Adidas Ultraboost" class="product-img object-cover w-full h-full" loading="lazy">
+                </div>
+                <div class="p-5 flex flex-col flex-grow">
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Adidas</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 truncate">Ultraboost Light</h3>
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <span class="text-xs text-gray-400 ml-2">(215)</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between">
+                        <span class="text-xl font-extrabold text-accent">4.200.000 ₫</span>
+                        <button onclick="addToCart('Ultraboost Light', 4200000)" class="bg-gray-100 hover:bg-primary hover:text-white text-gray-900 w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" title="Thêm vào giỏ">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 6 -->
+            <div class="product-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col">
+                <div class="relative h-64 overflow-hidden bg-gray-100 flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=600&q=80" alt="Converse Chuck 70" class="product-img object-cover w-full h-full" loading="lazy">
+                </div>
+                <div class="p-5 flex flex-col flex-grow">
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Converse</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 truncate">Chuck 70 Vintage</h3>
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                        </div>
+                        <span class="text-xs text-gray-400 ml-2">(156)</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between">
+                        <span class="text-xl font-extrabold text-accent">2.200.000 ₫</span>
+                        <button onclick="addToCart('Chuck 70 Vintage', 2200000)" class="bg-gray-100 hover:bg-primary hover:text-white text-gray-900 w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" title="Thêm vào giỏ">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 7 -->
+            <div class="product-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col">
+                <div class="relative h-64 overflow-hidden bg-gray-100 flex items-center justify-center">
+                     <span class="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full z-10">Mới</span>
+                    <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=600&q=80" alt="New Balance 550" class="product-img object-cover w-full h-full" loading="lazy">
+                </div>
+                <div class="p-5 flex flex-col flex-grow">
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">New Balance</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 truncate">New Balance 550</h3>
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="text-xs text-gray-400 ml-2">(42)</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between">
+                        <span class="text-xl font-extrabold text-accent">3.100.000 ₫</span>
+                        <button onclick="addToCart('New Balance 550', 3100000)" class="bg-gray-100 hover:bg-primary hover:text-white text-gray-900 w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" title="Thêm vào giỏ">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 8 -->
+            <div class="product-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col">
+                <div class="relative h-64 overflow-hidden bg-gray-100 flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=600&q=80" alt="Nike Jordan" class="product-img object-cover w-full h-full" loading="lazy">
+                </div>
+                <div class="p-5 flex flex-col flex-grow">
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Nike</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 truncate">Air Jordan 1 Retro High</h3>
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="text-xs text-gray-400 ml-2">(512)</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between">
+                        <span class="text-xl font-extrabold text-accent">5.500.000 ₫</span>
+                        <button onclick="addToCart('Air Jordan 1 Retro High', 5500000)" class="bg-gray-100 hover:bg-primary hover:text-white text-gray-900 w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" title="Thêm vào giỏ">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- View More Button (Mobile) -->
+        <div class="mt-10 text-center sm:hidden">
+            <a href="#" class="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold py-3 px-8 rounded-full transition-colors">
+                Xem tất cả sản phẩm
+            </a>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <section class="bg-primary text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-700">
+                <div class="p-4">
+                    <i class="fa-solid fa-truck-fast text-4xl text-accent mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Giao Hàng Miễn Phí</h3>
+                    <p class="text-gray-400 text-sm">Cho mọi đơn hàng trên 2.000.000 ₫ toàn quốc.</p>
+                </div>
+                <div class="p-4 pt-8 md:pt-4">
+                    <i class="fa-solid fa-shield-halved text-4xl text-accent mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Chính Hãng 100%</h3>
+                    <p class="text-gray-400 text-sm">Cam kết hoàn tiền gấp đôi nếu phát hiện hàng giả.</p>
+                </div>
+                <div class="p-4 pt-8 md:pt-4">
+                    <i class="fa-solid fa-rotate-left text-4xl text-accent mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Đổi Trả Dễ Dàng</h3>
+                    <p class="text-gray-400 text-sm">Hỗ trợ đổi size hoặc trả hàng trong vòng 30 ngày.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Brand Info -->
+                <div class="col-span-1 md:col-span-1">
+                    <a href="#" class="text-2xl font-black tracking-tighter text-white mb-4 block">
+                        KICKS<span class="text-accent">VN</span>.
+                    </a>
+                    <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                        Nâng tầm bước chân của bạn với những đôi giày thể thao tuyệt vời nhất từ các thương hiệu toàn cầu. 
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Cửa Hàng</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-accent transition-colors">Giày Nam</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Giày Nữ</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Hàng Mới Về</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Khuyến Mãi</a></li>
+                    </ul>
+                </div>
+
+                <!-- Policy -->
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Hỗ Trợ</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-accent transition-colors">Chính sách giao hàng</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Đổi trả & Hoàn tiền</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Hướng dẫn chọn size</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Câu hỏi thường gặp</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Đăng ký nhận tin</h4>
+                    <p class="text-sm text-gray-400 mb-4">Nhận ngay mã giảm giá 10% cho đơn hàng đầu tiên của bạn.</p>
+                    <form class="flex" onsubmit="event.preventDefault(); showToast('Cảm ơn bạn đã đăng ký!');">
+                        <input type="email" placeholder="Email của bạn" required class="bg-gray-800 text-white px-4 py-2 w-full rounded-l-md focus:outline-none focus:ring-1 focus:ring-accent border border-gray-700">
+                        <button type="submit" class="bg-accent hover:bg-red-600 px-4 py-2 rounded-r-md text-white transition-colors font-medium">
+                            Gửi
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 KicksSport. Bản quyền thuộc về KicksSport.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <i class="fa-brands fa-cc-visa text-2xl"></i>
+                    <i class="fa-brands fa-cc-mastercard text-2xl"></i>
+                    <i class="fa-brands fa-cc-paypal text-2xl"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Toast Notification System -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none">
+        <!-- Toasts will be injected here -->
+    </div>
+
+    <!-- JavaScript for Interactions -->
+    <script>
+        let cartItemsCount = 0;
+
+        // Function to handle Add to Cart
+        function addToCart(productName, price) {
+            // Update cart count
+            cartItemsCount++;
+            const badge = document.getElementById('cart-count');
+            badge.innerText = cartItemsCount;
+            
+            // Add a little pop animation to the badge
+            badge.classList.remove('scale-100');
+            badge.classList.add('scale-150');
+            setTimeout(() => {
+                badge.classList.remove('scale-150');
+                badge.classList.add('scale-100');
+            }, 200);
+
+            // Format price to VND string format
+            const formattedPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+
+            // Show Toast Notification
+            showToast(`Đã thêm <strong>${productName}</strong> vào giỏ hàng thành công!`);
+        }
+
+        // Function to create and show toast messages
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = `bg-white border-l-4 border-green-500 shadow-xl rounded-md px-6 py-4 flex items-center gap-3 transform translate-y-10 opacity-0 transition-all duration-300 max-w-sm pointer-events-auto`;
+            
+            toast.innerHTML = `
+                <div class="text-green-500 bg-green-50 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="text-sm text-gray-700">${message}</div>
+                <button onclick="this.parentElement.remove()" class="text-gray-400 hover:text-gray-600 ml-auto">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            `;
+            
+            // Append to container
+            container.appendChild(toast);
+            
+            // Animate in
+            setTimeout(() => {
+                toast.classList.remove('translate-y-10', 'opacity-0');
+            }, 10);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300); // Wait for transition
+            }, 3000);
+        }
+
+        // Mock function for clicking the cart icon
+        function toggleCart() {
+            if (cartItemsCount === 0) {
+                showToast("Giỏ hàng của bạn đang trống!");
+            } else {
+                showToast(`Bạn đang có ${cartItemsCount} sản phẩm trong giỏ hàng. Đi đến trang thanh toán...`);
+            }
+        }
+    </script>
+</body>
+</html>
